@@ -28,4 +28,5 @@ while True:
         print('\n' +'Only Arabic numerals are accepted as input!')
         False
 
+# Listing 2 from "Ex-1_simple_roulette.pdf" used for float format
 print('\n' + 'Your budget is {:.2f}'.format(budget) + '\n') # May remove for final version
