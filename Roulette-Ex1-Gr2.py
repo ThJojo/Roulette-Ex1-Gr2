@@ -6,3 +6,8 @@
 # This snippet clears the screan of a terminal
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
+
+# Asking for the player's name
+player = input('Welcome to Terminal Roulette!\n\n'
+             + 'Please, enter your name: ')
+print('\n' + 'Hello', player + '!' , '\n')
