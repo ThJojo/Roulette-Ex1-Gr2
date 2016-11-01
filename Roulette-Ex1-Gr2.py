@@ -33,19 +33,26 @@ print('\n' + 'Your budget is {:.2f}'.format(budget) + '\n') # May remove for fin
 
 # Implementing the different bet types
 # http://stackoverflow.com/a/2184764
-single = list(range(37))     # creates a list with the numbers  0..36
-manque = list(range(1,19))   #                                  1..18
-passe = list(range(19,37))   #                                 19..36
-rouge = [ 1,  3,  5,  7,  9, 12,
-         14, 16, 18, 19, 21, 23,
-         25, 27, 30, 32, 34, 36] # list of "rouge" numbers
-                                 # logical explanation for distribution not yet found!
-noir = [ 2,  4,  6,  8, 10, 11,
-        13, 15, 17, 20, 22, 24,
-        26, 28, 29, 31, 33, 35] # list of "rouge" numbers
-                                # logical explanation for distribution not yet found!
-pair = list(range(2,37,2))   # even numbers between 1..36
-impair = list(range(1,37,2)) # odd numbers between  1..36
-dozen1 = list(range(1,13))   # creates a list with the numbers  1..12
-dozen2 = list(range(13,25))  #                                 13..24
-dozen3 = list(range(25,37))  #                                 25..36
+single = list(range(37))       # creates a list with the numbers  0..36
+manque = list(range(1,19))     #                                  1..18
+passe = list(range(19,37))     #                                 19..36
+
+# https://en.wikipedia.org/wiki/Roulette#Roulette_wheel_number_sequence
+# http://stackoverflow.com/a/13959555
+rouge = list(range(1,11,2)) \
+        + list(range(12,19,2)) \
+        + list(range(19,29,2)) \
+        + list(range(30,37,2)) # list of "rouge" numbers
+                               # odd numbers   1..10 and 19..28
+                               # even numbers 11..18 and 29..36
+
+# http://stackoverflow.com/a/2070734
+noir = list(range(1,37))       # creates a list with the numbers  1..36
+for x in rouge:
+    noir.remove(x)             # removing all entries, which are already present in "rouge"
+
+pair = list(range(2,37,2))      # even numbers between 1..36
+impair = list(range(1,37,2))    # odd numbers between  1..36
+dozen1 = list(range(1,13))      # creates a list with the numbers  1..12
+dozen2 = list(range(13,25))     #                                 13..24
+dozen3 = list(range(25,37))     #                                 25..36
