@@ -51,8 +51,11 @@ noir = list(range(1,37))       # creates a list with the numbers  1..36
 for x in rouge:
     noir.remove(x)             # removing all entries, which are already present in "rouge"
 
-pair = list(range(2,37,2))      # even numbers between 1..36
-impair = list(range(1,37,2))    # odd numbers between  1..36
-dozen1 = list(range(1,13))      # creates a list with the numbers  1..12
-dozen2 = list(range(13,25))     #                                 13..24
-dozen3 = list(range(25,37))     #                                 25..36
+pair = list(range(2,37,2))     # even numbers between 1..36
+impair = list(range(1,37,2))   # odd numbers between  1..36
+dozen1 = list(range(1,13))     # creates a list with the numbers  1..12
+dozen2 = list(range(13,25))    #                                 13..24
+dozen3 = list(range(25,37))    #                                 25..36
+column1 = list(range(1,37,3))  # column1: 1, 4, 7, 10, .. , 34
+column2 = list(range(2,37,3))  # column2: 2, 5, 8, 11, .. , 35
+column3 = list(range(3,37,3))  # column3: 3, 6, 9, 12, .. , 36
