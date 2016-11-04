@@ -59,3 +59,23 @@ dozen3 = list(range(25,37))    #                                 25..36
 column1 = list(range(1,37,3))  # column1: 1, 4, 7, 10, .. , 34
 column2 = list(range(2,37,3))  # column2: 2, 5, 8, 11, .. , 35
 column3 = list(range(3,37,3))  # column3: 3, 6, 9, 12, .. , 36
+
+
+# ----------------------------------- TASK 3 -----------------------------------
+# Asking the player for the bet
+# https://wiki.python.org/moin/WhileLoop
+# http://stackoverflow.com/a/4138231
+# http://stackoverflow.com/a/4730961
+while True:
+    bet = input('How big is your bet for this game? ') # may add the name of the game as soon as task 2 is implemented
+    try:
+        bet = float(bet)
+        if bet <= 0:
+            print('\n' + 'Your bet must be greater than zero!')
+        elif bet > budget:
+            print('\n' + 'Your bet must not exceed your budget!')
+        else:
+            break
+    except ValueError:
+        print('\n' +'Only Arabic numerals are accepted as input!')
+        False
