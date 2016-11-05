@@ -26,7 +26,6 @@ while True:
             print('\n' + 'Your input must be greater than zero!')
     except ValueError:
         print('\n' +'Only Arabic numerals are accepted as input!')
-        False
 
 # Listing 2 from "Ex-1_simple_roulette.pdf" used for float format
 print('\n' + 'Your budget is {:.2f}'.format(budget) + '\n') # May remove for final version
@@ -77,5 +76,8 @@ while True:
         else:
             break
     except ValueError:
-        print('\n' +'Only Arabic numerals are accepted as input!')
-        False
+        print('\n' + 'Only Arabic numerals are accepted as input!')
+
+# May ask here to confirm the bet. If not confirmed, ask if player wants to quit, or bet a different amount.
+
+# calculate budget = budget-bet+(+win or -loss) later --> maybe only in task 4
