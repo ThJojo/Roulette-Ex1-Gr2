@@ -141,7 +141,7 @@ def selectBetType(dictBet, itemsInList):
         itemBet = input('\n' + 'Please select from list: ')
         try:
             itemBet = int(itemBet)
-            if itemBet in list(range(1,itemsInList+1,1)):
+            if itemBet in range(1,itemsInList+1,1):
                 return itemBet # http://stackoverflow.com/questions/354883/how-do-you-return-multiple-values-in-python
                 break
             else:
