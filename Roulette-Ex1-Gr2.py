@@ -59,3 +59,138 @@ dozen3 = list(range(25,37))    #                                 25..36
 column1 = list(range(1,37,3))  # column1: 1, 4, 7, 10, .. , 34
 column2 = list(range(2,37,3))  # column2: 2, 5, 8, 11, .. , 35
 column3 = list(range(3,37,3))  # column3: 3, 6, 9, 12, .. , 36
+
+# ----------------------------------- TASK 2 -----------------------------------
+# Ask player for the game
+
+# Defining a dictonary with integer keys and name values
+# dictGames = {1: 'single',
+#             2: 'manque',
+#             3: 'passe',
+#             4: 'rouge',
+#             5: 'noir',
+#             6: 'pair',
+#             7: 'impair',
+#             8: 'dozen1',
+#             9: 'dozen2',
+#            10: 'dozen3',
+#            11: 'column1',
+#            12: 'column2',
+#            13: 'column3'}
+
+# Defining multiple dictionaries for the selection of the bet type
+dictBetType = {1: 'single [0..36]',
+               2: 'manque [1..18]',
+               3: 'passe [19..36]',
+               4: 'color',
+               5: 'pair or impair',
+               6: 'dozen',
+               7: 'column',
+              'q': 'quit'}
+
+dictColor = {1: 'rouge',
+             2: 'noir',
+            'x': 'one level up',
+            'q': 'quit'}
+
+dictImPair = {1: 'pair',
+              2: 'impair',
+             'x': 'one level up',
+             'q': 'quit'}
+
+dictDozen = {1: '1st dozen [1..12]',
+             2: '2nd dozen [13..24]',
+             3: '3rd dozen [25..36]',
+            'x': 'one level up',
+            'q': 'quit'}
+
+dictColumn = {1: '1st column [1, 4, 7, .. 34]',
+              2: '2nd column [2, 6, 8, .. 35]',
+              3: '3rd column [3, 5, 9, .. 36]',
+             'x': 'one level up',
+             'q': 'quit'}
+
+# Defining another dictonary to translate the selection
+dictTranslate = {'single [0..36]' : single,
+                 'manque [1..18]' : manque,
+                 'passe [19..36]' : passe,
+                 'rouge'          : rouge,
+                 'noir'           : noir,
+                 'pair'           : pair,
+                 'impair'         : impair,
+                 '1st dozen [1..12]'  : dozen1,
+                 '2nd dozen [13..24]' : dozen2,
+                 '3rd dozen [25..36]' : dozen3,
+                 '1st column [1, 4, 7, .. 34]' : column1,
+                 '2nd column [2, 6, 8, .. 35]' : column2,
+                 '3rd column [3, 5, 9, .. 36]' : column3}
+
+# This function prints all elements of a dictonary
+# http://stackoverflow.com/a/18219242
+def printDictSorted(x):
+    for key, value in sorted(x.items()):
+        print("{} = {}".format(key, value))
+
+def printDict(x):
+    for key, value in x.items():
+        print("{} = {}".format(key, value))
+
+def selectBetType(dictBet, itemsInList):
+    printDict(dictBet)
+    while True:
+        itemBet = input('\n' + 'Please select from list: ')
+        try:
+            itemBet = int(itemBet)
+            if itemBet in list(range(1,itemsInList+1,1)):
+                return itemBet # http://stackoverflow.com/questions/354883/how-do-you-return-multiple-values-in-python
+                break
+            else:
+                print('\n' + 'Wrong input!')
+        except ValueError:
+            if itemBet is 'q':
+                confirmQuit = input('Do you realy want to quit? ')
+                while True:
+                    if confirmQuit == 'y':
+                        quit()
+                    else:
+                        break
+            else:
+                print('\n' + 'Wrong input! except')
+
+# trial outputs
+
+level_0 = selectBetType(dictBetType, 7)
+print('\n' + 'You selected:', level_0) # Remove/edit later
+
+level_1a = selectBetType(dictColor, 2)
+print('\n' + 'You selected:', level_1a) # Remove/edit later
+
+level_1b = selectBetType(dictImPair, 2)
+print('\n' + 'You selected:', level_1b) # Remove/edit later
+
+level_1c = selectBetType(dictDozen, 3)
+print('\n' + 'You selected:', level_1c) # Remove/edit later
+
+level_1d = selectBetType(dictColumn, 3)
+print('\n' + 'You selected:', level_1d) # Remove/edit later
+
+# https://docs.python.org/3/library/stdtypes.html?highlight=dict#dict
+#print('\n' + 'Available games:' + '\n')
+#printDict(dictGames)
+#while True:
+#    gameSelected = input('\n' + 'Your choice: ')
+#    try:
+#        gameSelected = int(gameSelected)
+#        if gameSelected in dictTranslate:
+#            print('Selected game:', dictTranslate[gameSelected]) # May edit later
+#            break
+#        else:
+#            print('Only integers between', list(dictGames.keys())[0], 'and', list(dictGames.keys())[-1], 'are accepted as input!')
+#    except ValueError:
+#        print('Only integers between', list(dictGames.keys())[0], 'and', list(dictGames.keys())[-1], 'are accepted as input!')
+#
+#print(dictNumbers[dictGames[gameSelected]])
+
+# How to program a switch using python
+# http://stackoverflow.com/a/60211
+# http://stackoverflow.com/a/103081
