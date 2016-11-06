@@ -29,7 +29,7 @@ while True:
         False
 
 # Listing 2 from "Ex-1_simple_roulette.pdf" used for float format
-print('\n' + 'Your budget is {:.2f}'.format(budget) + '\n') # May remove for final version
+print('\n' + 'Your budget is {:.2f}'.format(budget)) # May remove for final version
 
 # Implementing the different bet types
 # http://stackoverflow.com/a/2184764
@@ -136,6 +136,7 @@ def printDict(x):
         print("{} = {}".format(key, value))
 
 def selectBetType(dictBet, itemsInList):
+    print('\n')
     printDict(dictBet)
     while True:
         itemBet = input('\n' + 'Please select from list: ')
@@ -147,8 +148,11 @@ def selectBetType(dictBet, itemsInList):
             else:
                 print('\n' + 'Wrong input!')
         except ValueError:
-            if itemBet is 'q':
-                confirmQuit = input('Do you realy want to quit? ')
+            if itemBet is 'x' and 'x' in dictBet:
+                print('One level up!')
+                return itemBet
+            elif itemBet is 'q':
+                confirmQuit = input('Do you really want to quit? ')
                 while True:
                     if confirmQuit == 'y':
                         quit()
@@ -158,21 +162,43 @@ def selectBetType(dictBet, itemsInList):
                 print('\n' + 'Wrong input! except')
 
 # trial outputs
-
-level_0 = selectBetType(dictBetType, 7)
-print('\n' + 'You selected:', level_0) # Remove/edit later
-
-level_1a = selectBetType(dictColor, 2)
-print('\n' + 'You selected:', level_1a) # Remove/edit later
-
-level_1b = selectBetType(dictImPair, 2)
-print('\n' + 'You selected:', level_1b) # Remove/edit later
-
-level_1c = selectBetType(dictDozen, 3)
-print('\n' + 'You selected:', level_1c) # Remove/edit later
-
-level_1d = selectBetType(dictColumn, 3)
-print('\n' + 'You selected:', level_1d) # Remove/edit later
+# https://bytebaker.com/2008/11/03/switch-case-statement-in-python/
+switch = 0
+while True:
+    if switch == 0:
+        level_0 = selectBetType(dictBetType, 7)
+        if level_0 in range(1,4,1):
+            break
+        else:
+            switch += 1
+    if level_0 == 4:
+        level_1a = selectBetType(dictColor, 2)
+        if level_1a is not 'x':
+            break
+        else:
+            switch -=1
+            continue
+    if level_0 == 5:
+        level_1b = selectBetType(dictImPair, 2)
+        if level_1b is not 'x':
+            break
+        else:
+            switch -=1
+            continue
+    if level_0 == 6:
+        level_1c = selectBetType(dictDozen, 3)
+        if level_1c is not 'x':
+            break
+        else:
+            switch -=1
+            continue
+    if level_0 == 7:
+        level_1d = selectBetType(dictColumn, 3)
+        if level_1d is not 'x':
+            break
+        else:
+            switch -=1
+            continue
 
 # https://docs.python.org/3/library/stdtypes.html?highlight=dict#dict
 #print('\n' + 'Available games:' + '\n')
