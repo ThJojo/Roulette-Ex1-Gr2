@@ -59,7 +59,6 @@ column1 = list(range(1,37,3))  # column1: 1, 4, 7, 10, .. , 34
 column2 = list(range(2,37,3))  # column2: 2, 5, 8, 11, .. , 35
 column3 = list(range(3,37,3))  # column3: 3, 6, 9, 12, .. , 36
 
-<<<<<<< HEAD
 # ----------------------------------- TASK 2 -----------------------------------
 # Ask player for the game
 
@@ -196,16 +195,16 @@ while True:
             switch += 1
     else: # Maybe this if/elif selection can be also realized with a dictonary.
         if main == 4:
-            sub = selectBetType(dictColor, len(dictBetType)-2)
+            sub = selectBetType(dictColor, len(dictBetType)-2) # failure if sub > 2
             dictNumToBet = {'color'          : dictColor[sub]}
         elif main == 5:
-            sub = selectBetType(dictImPair, len(dictBetType)-2)
+            sub = selectBetType(dictImPair, len(dictBetType)-2) # failure if sub > 2
             dictNumToBet = {'pair or impair' : dictImPair[sub]}
         elif main == 6:
-            sub = selectBetType(dictDozen, len(dictBetType)-2)
+            sub = selectBetType(dictDozen, len(dictBetType)-2) # failure if sub > 3
             dictNumToBet = {'dozen'          : dictDozen[sub]}
         elif main == 7:
-            sub = selectBetType(dictColumn, len(dictBetType)-2)
+            sub = selectBetType(dictColumn, len(dictBetType)-2) # failure if sub > 3
             dictNumToBet = {'column'         : dictColumn[sub]}
         if sub is not 'x':
             selection = dictNumToBet[dictBetType[main]]
@@ -215,7 +214,6 @@ while True:
             continue
 
 print('\n' + selection + '\n')
-=======
 
 # ----------------------------------- TASK 3 -----------------------------------
 # Asking the player for the bet
@@ -229,7 +227,7 @@ while True:
         if bet <= 0:
             print('\n' + 'Your bet must be greater than zero!')
         elif bet > budget:
-            print('\n' + 'Your bet must not exceed your budget!')
+            print('\n' + 'Your bet must not exceed your budget ({:.2f}'.format(budget) + ')!')
         else:
             break
     except ValueError:
@@ -238,4 +236,3 @@ while True:
 # May ask here to confirm the bet. If not confirmed, ask if player wants to quit, or bet a different amount.
 
 # calculate budget = budget-bet+(+win or -loss) later --> maybe only in task 4
->>>>>>> task-3
