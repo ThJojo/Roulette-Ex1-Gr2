@@ -63,78 +63,69 @@ column3 = list(range(3,37,3))  # column3: 3, 6, 9, 12, .. , 36
 # ----------------------------------- TASK 2 -----------------------------------
 # Ask player for the game
 
-# Defining a dictonary with integer keys and name values
-# dictGames = {1: 'single',
-#             2: 'manque',
-#             3: 'passe',
-#             4: 'rouge',
-#             5: 'noir',
-#             6: 'pair',
-#             7: 'impair',
-#             8: 'dozen1',
-#             9: 'dozen2',
-#            10: 'dozen3',
-#            11: 'column1',
-#            12: 'column2',
-#            13: 'column3'}
-
 # Defining multiple dictionaries for the selection of the bet type
-dictBetType = {1: 'single [0..36]',
-               2: 'manque [1..18]',
-               3: 'passe [19..36]',
-               4: 'color',
-               5: 'pair or impair',
-               6: 'dozen',
-               7: 'column',
-              'q': 'quit'}
+dictBetType = {1  : 'single [0..36]',
+               2  : 'manque [1..18]',
+               3  : 'passe [19..36]',
+               4  : 'color',
+               5  : 'pair or impair',
+               6  : 'dozen',
+               7  : 'column',
+              'q' : 'quit'}
 
-dictColor = {1: 'rouge',
-             2: 'noir',
-            'x': 'one level up',
-            'q': 'quit'}
+dictColor = {1  : 'rouge',
+             2  : 'noir',
+            'x' : 'one level up',
+            'q' : 'quit'}
 
-dictImPair = {1: 'pair',
-              2: 'impair',
-             'x': 'one level up',
-             'q': 'quit'}
+dictImPair = {1  : 'pair',
+              2  : 'impair',
+             'x' : 'one level up',
+             'q' : 'quit'}
 
-dictDozen = {1: '1st dozen [1..12]',
-             2: '2nd dozen [13..24]',
-             3: '3rd dozen [25..36]',
-            'x': 'one level up',
-            'q': 'quit'}
+dictDozen = {1  : '1st dozen [1..12]',
+             2  : '2nd dozen [13..24]',
+             3  : '3rd dozen [25..36]',
+            'x' : 'one level up',
+            'q' : 'quit'}
 
-dictColumn = {1: '1st column [1, 4, 7, .. 34]',
-              2: '2nd column [2, 6, 8, .. 35]',
-              3: '3rd column [3, 5, 9, .. 36]',
-             'x': 'one level up',
-             'q': 'quit'}
+dictColumn = {1  : '1st column [1, 4, 7, .. 34]',
+              2  : '2nd column [2, 6, 8, .. 35]',
+              3  : '3rd column [3, 5, 9, .. 36]',
+             'x' : 'one level up',
+             'q' : 'quit'}
 
-# Defining another dictonary to translate the selection
-dictTranslate = {'single [0..36]' : single,
-                 'manque [1..18]' : manque,
-                 'passe [19..36]' : passe,
-                 'rouge'          : rouge,
-                 'noir'           : noir,
-                 'pair'           : pair,
-                 'impair'         : impair,
-                 '1st dozen [1..12]'  : dozen1,
-                 '2nd dozen [13..24]' : dozen2,
-                 '3rd dozen [25..36]' : dozen3,
-                 '1st column [1, 4, 7, .. 34]' : column1,
-                 '2nd column [2, 6, 8, .. 35]' : column2,
-                 '3rd column [3, 5, 9, .. 36]' : column3}
+# Defining other dictonaries to translate the selection
+dictTransBetType = {'single [0..36]' : single,
+                    'manque [1..18]' : manque,
+                    'passe [19..36]' : passe}
 
-# This function prints all elements of a dictonary
+dictTransColor = {'rouge' : rouge,
+                 'noir'   : noir}
+
+dictTransImPair = {'pair'    : pair,
+                   'impair' : impair}
+
+dictTransDozen = {'1st dozen [1..12]'  : dozen1,
+                  '2nd dozen [13..24]' : dozen2,
+                  '3rd dozen [25..36]' : dozen3}
+
+dictTransColumn = {'1st column [1, 4, 7, .. 34]' : column1,
+                   '2nd column [2, 6, 8, .. 35]' : column2,
+                   '3rd column [3, 5, 9, .. 36]' : column3}
+
+# This function prints all elements of a dictonary (sorted)
 # http://stackoverflow.com/a/18219242
 def printDictSorted(x):
     for key, value in sorted(x.items()):
         print("{} = {}".format(key, value))
 
+# This function prints all elements of a dictonary
 def printDict(x):
     for key, value in x.items():
         print("{} = {}".format(key, value))
 
+# This function is used for the selection of the game.
 def selectBetType(dictBet, itemsInList):
     print('\n')
     printDict(dictBet)
@@ -159,64 +150,68 @@ def selectBetType(dictBet, itemsInList):
                     else:
                         break
             else:
-                print('\n' + 'Wrong input! except')
+                print('\n' + 'Wrong input!')
+
+# The following function is used for the games single, manque, and passe
+# The player has to select a number from the printed list
+# Optional, the player can go one level up, or quit the game.
+def selectBetNumber(bet):
+    print('\n')
+    print(bet)
+    print('x = one level up' '\n' + 'q = quit')
+    while True:
+        numberSelected = input('\n' + 'Please select from list: ')
+        try:
+            numberSelected = int(numberSelected)
+            if numberSelected in bet:
+                return numberSelected
+                break
+            else:
+                print('\n' + 'Wrong inupt!')
+        except ValueError:
+            if numberSelected is 'x':
+                print('One level up!')
+                return numberSelected
+            elif numberSelected is 'q':
+                confirmQuit = input('Do you really want to quit? ')
+                while True:
+                    if confirmQuit == 'y':
+                        quit()
+                    else:
+                        break
+            else:
+                print('\n' + 'Wrong input!')
 
 # trial outputs
 # https://bytebaker.com/2008/11/03/switch-case-statement-in-python/
 switch = 0
 while True:
     if switch == 0:
-        level_0 = selectBetType(dictBetType, 7)
-        if level_0 in range(1,4,1):
-            break
+        main = selectBetType(dictBetType, len(dictBetType)-1)
+        if main in range(1,4,1):
+            selection = selectBetNumber(dictTransBetType[dictBetType[main]])
+            if selection in dictTransBetType[dictBetType[main]]:
+                break
         else:
             switch += 1
-    if level_0 == 4:
-        level_1a = selectBetType(dictColor, 2)
-        if level_1a is not 'x':
-            break
-        else:
-            switch -=1
-            continue
-    if level_0 == 5:
-        level_1b = selectBetType(dictImPair, 2)
-        if level_1b is not 'x':
-            break
-        else:
-            switch -=1
-            continue
-    if level_0 == 6:
-        level_1c = selectBetType(dictDozen, 3)
-        if level_1c is not 'x':
-            break
-        else:
-            switch -=1
-            continue
-    if level_0 == 7:
-        level_1d = selectBetType(dictColumn, 3)
-        if level_1d is not 'x':
+    else: # Maybe this if/elif selection can be also realized with a dictonary.
+        if main == 4:
+            sub = selectBetType(dictColor, len(dictBetType)-2)
+            dictNumToBet = {'color'          : dictColor[sub]}
+        elif main == 5:
+            sub = selectBetType(dictImPair, len(dictBetType)-2)
+            dictNumToBet = {'pair or impair' : dictImPair[sub]}
+        elif main == 6:
+            sub = selectBetType(dictDozen, len(dictBetType)-2)
+            dictNumToBet = {'dozen'          : dictDozen[sub]}
+        elif main == 7:
+            sub = selectBetType(dictColumn, len(dictBetType)-2)
+            dictNumToBet = {'column'         : dictColumn[sub]}
+        if sub is not 'x':
+            selection = dictNumToBet[dictBetType[main]]
             break
         else:
             switch -=1
             continue
 
-# https://docs.python.org/3/library/stdtypes.html?highlight=dict#dict
-#print('\n' + 'Available games:' + '\n')
-#printDict(dictGames)
-#while True:
-#    gameSelected = input('\n' + 'Your choice: ')
-#    try:
-#        gameSelected = int(gameSelected)
-#        if gameSelected in dictTranslate:
-#            print('Selected game:', dictTranslate[gameSelected]) # May edit later
-#            break
-#        else:
-#            print('Only integers between', list(dictGames.keys())[0], 'and', list(dictGames.keys())[-1], 'are accepted as input!')
-#    except ValueError:
-#        print('Only integers between', list(dictGames.keys())[0], 'and', list(dictGames.keys())[-1], 'are accepted as input!')
-#
-#print(dictNumbers[dictGames[gameSelected]])
-
-# How to program a switch using python
-# http://stackoverflow.com/a/60211
-# http://stackoverflow.com/a/103081
+print('\n' + selection + '\n')
