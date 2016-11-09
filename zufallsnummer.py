@@ -1,12 +1,14 @@
-print("Drücken sie S um das Roulette Rad zu starten")
+input("Drücken sie Enter um das Roulette Rad zu starten")
+import msvcrt as m
+def wait():
+    m.getch()
+#dictPlay = {'s' : 'spin the wheel',
+            #'x' : 'one level up',
+            #'q' : 'quit'}
 
-dictPlay = {'s' : 'spin the wheel',
-            'x' : 'one level up',
-            'q' : 'quit'}
-
-def printDictSorted(dictPlay):
-    for key, value in sorted(dictPlay.items()):
-        print("{} = {}".format(key, value))
+#def printDictSorted(dictPlay):
+#    for key, value in sorted(dictPlay.items()):
+#        print("{} = {}".format(key, value))
 
 
 bet= 17
